@@ -1,0 +1,7 @@
+# Embeddings
+*.npy
+
+# ChromaDB
+chroma/
+*.sqlite3
+*.db
