@@ -1,3 +1,10 @@
 pandas
 numpy
+sentence-transformers
+chromadb
+scikit-learn
 jupyter
+ipykernel
+google-generativeai
+python-dotenv
+tqdm
