@@ -19,3 +19,7 @@ chroma_db/
 # Python
 __pycache__/
 *.py[cod].DS_Store
+
+
+# Environment Variables
+.env
