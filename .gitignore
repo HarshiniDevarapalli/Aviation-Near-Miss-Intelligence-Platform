@@ -1,7 +1,21 @@
-# Embeddings
-*.npy
+# Python
+.venv/
+__pycache__/
+*.pyc
 
-# ChromaDB
-chroma/
-*.sqlite3
-*.db.DS_Store
+# Jupyter
+.ipynb_checkpoints/
+
+# macOS
+.DS_Store
+
+# Data
+data/raw/
+data/processed/
+
+# Chroma DB
+chroma_db/
+
+# Python
+__pycache__/
+*.py[cod].DS_Store
