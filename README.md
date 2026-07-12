@@ -92,23 +92,130 @@ Safety Intelligence Report
 Aviation-Near-Miss-Intelligence-Platform
 │
 ├── app.py
+│   Entry point of the Streamlit application.
+│
+├── requirements.txt
+│   Project dependencies.
+│
+├── README.md
+│   Project overview and setup instructions.
+│
+├── .env
+│   Stores environment variables such as the Gemini API key.
+│
+├── .gitignore
+│   Specifies files and folders ignored by Git.
+│
+├── .streamlit/
+│   └── config.toml
+│       Streamlit application configuration and theme settings.
+│
+├── chroma_db/
+│   Persistent ChromaDB vector database storing embeddings.
+│
+├── data/
+│   ├── raw/
+│   │   Original NASA ASRS dataset.
+│   │
+│   └── processed/
+│       Cleaned and preprocessed aviation incident reports.
+│
+├── docs/
+│   Project documentation, architecture diagrams, screenshots,
+│   and other supporting assets.
+│
+├── scripts/
+│   └── ingest_data.py
+│       Generates embeddings for all incident reports and stores
+│       them in ChromaDB.
+│
 ├── src/
-│   ├── context_builder.py
+│   │
+│   ├── config.py
+│   │   Loads project configuration and environment variables.
+│   │
 │   ├── data_loader.py
+│   │   Loads and preprocesses the ASRS dataset.
+│   │
 │   ├── embedding_model.py
-│   ├── gemini_service.py
-│   ├── prompts.py
-│   ├── rag_pipeline.py
+│   │   Generates dense vector embeddings using the
+│   │   BAAI/bge-small-en-v1.5 Sentence Transformer.
+│   │
+│   ├── vector_store.py
+│   │   Handles storage and retrieval operations with ChromaDB.
+│   │
 │   ├── retriever.py
-│   └── vector_store.py
+│   │   Performs semantic similarity search over historical
+│   │   aviation incidents.
+│   │
+│   ├── context_builder.py
+│   │   Formats retrieved incidents into structured context for
+│   │   the language model.
+│   │
+│   ├── prompts.py
+│   │   Defines prompt templates for AI-generated safety reports.
+│   │
+│   ├── gemini_service.py
+│   │   Interfaces with Google's Gemini model for report generation.
+│   │
+│   ├── rag_pipeline.py
+│   │   Implements the complete Retrieval-Augmented Generation
+│   │   workflow from user query to report generation.
+│   │
+│   └── utils.py
+│       Common utility functions used across the backend.
 │
 ├── ui/
-├── scripts/
-├── tests/
-├── data/
-├── chroma_db/
-├── docs/
-└── requirements.txt
+│   │
+│   ├── __init__.py
+│   │   Initializes the UI package.
+│   │
+│   ├── auth.py
+│   │   Handles application authentication and session management.
+│   │
+│   ├── layout.py
+│   │   Defines the overall application layout and page structure.
+│   │
+│   ├── styles.py
+│   │   Custom styling and CSS for the Streamlit interface.
+│   │
+│   ├── constants.py
+│   │   Stores UI constants, labels, and configuration values.
+│   │
+│   ├── components.py
+│   │   Reusable UI components such as cards, sections, and tabs.
+│   │
+│   ├── analysis.py
+│   │   Executes the RAG pipeline and coordinates report generation.
+│   │
+│   ├── analytics.py
+│   │   Generates analytics visualizations and operational insights.
+│   │
+│   ├── parsers.py
+│   │   Parses AI-generated reports for structured presentation.
+│   │
+│   ├── chart_theme.py
+│   │   Defines styling and themes for dashboard visualizations.
+│   │
+│   └── export.py
+│       Supports exporting generated reports.
+│
+└── tests/
+    │
+    ├── test_retriever.py
+    │   Tests semantic retrieval functionality.
+    │
+    ├── test_context_builder.py
+    │   Tests context construction.
+    │
+    ├── test_gemini.py
+    │   Tests Gemini report generation.
+    │
+    ├── test_pipeline.py
+    │   Tests the complete end-to-end RAG pipeline.
+    │
+    └── list_models.py
+        Lists available Gemini models for validation.
 ```
 
 ---
