@@ -37,8 +37,20 @@ USER QUERY
 
 ====================================================
 
-RETRIEVED INCIDENTS
+Retrieved Aviation Evidence
 
+The following information consists of:
+
+1. Historical aviation incidents retrieved using semantic search.
+
+2. Relationships extracted from the Aviation Knowledge Graph.
+
+Use BOTH sources when generating the Safety Intelligence Report.
+
+When graph relationships support a conclusion,
+explicitly mention the recurring relationships.
+
+Do not invent entities that are not present.
 {context}
 
 ====================================================

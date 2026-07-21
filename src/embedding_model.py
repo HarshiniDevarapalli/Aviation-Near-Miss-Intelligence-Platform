@@ -5,29 +5,56 @@ import numpy as np
 
 class EmbeddingModel:
     """
-    Handles text embedding using Sentence Transformers.
+    Singleton wrapper around SentenceTransformer.
+    The model is loaded only once and reused throughout the application.
     """
 
-    def __init__(self, model_name: str = "BAAI/bge-small-en-v1.5"):
-        print(f"Loading embedding model: {model_name}")
-        self.model = SentenceTransformer(model_name)
-        print("Embedding model loaded successfully!")
+    _model = None
 
-    def encode_documents(self, documents: List[str]) -> np.ndarray:
-        """
-        Generate embeddings for multiple documents.
-        """
+    def __init__(self, model_name: str = "BAAI/bge-small-en-v1.5"):
+
+        if EmbeddingModel._model is None:
+
+            print(f"Loading embedding model: {model_name}")
+
+            EmbeddingModel._model = SentenceTransformer(
+                model_name
+            )
+
+            print("Embedding model loaded successfully!")
+
+        self.model = EmbeddingModel._model
+
+    def encode_documents(
+        self,
+        documents: List[str]
+    ) -> np.ndarray:
+
         return self.model.encode(
             documents,
             show_progress_bar=True,
             convert_to_numpy=True
         )
 
-    def encode_query(self, query: str) -> np.ndarray:
-        """
-        Generate embedding for a single query.
-        """
+    def encode_query(
+        self,
+        query: str
+    ) -> np.ndarray:
+
         return self.model.encode(
             query,
+            convert_to_numpy=True
+        )
+
+    def encode(
+        self,
+        text: str
+    ) -> np.ndarray:
+        """
+        General-purpose embedding for a single string.
+        """
+
+        return self.model.encode(
+            text,
             convert_to_numpy=True
         )
